@@ -3,7 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { MikroORM } from "@mikro-orm/core";
 import { EntityManager } from "@mikro-orm/postgresql";
 
-import { Shop } from "./entities/shop.entity";
+import { Shop } from "./entities";
 
 @Injectable()
 export class ShopService {

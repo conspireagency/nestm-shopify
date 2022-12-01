@@ -4,7 +4,7 @@ import { MikroORM } from "@mikro-orm/core";
 import { EntityManager } from "@mikro-orm/postgresql";
 
 import { ShopService } from "./shop.service";
-import { Product, Variant } from "./entities/product.entity";
+import { Product, Variant } from "./entities";
 
 @Injectable()
 export class ProductService {
