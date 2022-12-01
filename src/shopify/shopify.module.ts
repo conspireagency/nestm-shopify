@@ -13,12 +13,13 @@ import { ConfigurableModuleClass } from "./shopify.module-definition";
 import { MikroOrmModule } from "@mikro-orm/nestjs";
 
 @Module({
-  imports: [MikroOrmModule.forRoot()],
+  //imports: [MikroOrmModule.forRoot()],
   controllers: [],
   providers: [ShopService, ProductService],
   exports: [ShopService, ProductService],
 })
-export class ShopifyModule extends ConfigurableModuleClass {}
+export class ShopifyModule {}
+//export class ShopifyModule extends ConfigurableModuleClass {}
 
 // export interface ShopifyModuleAsyncOptions
 //   extends Pick<ModuleMetadata, "imports" | "providers"> {
