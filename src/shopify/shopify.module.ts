@@ -9,35 +9,36 @@ import {
 import { ProductService } from "./product.service";
 import { ShopService } from "./shop.service";
 
-//import { ConfigurableModuleClass } from "./shopify.module-definition";
-//import { MikroOrmModule } from "@mikro-orm/nestjs";
+import { ConfigurableModuleClass } from "./shopify.module-definition";
+import { MikroOrmModule } from "@mikro-orm/nestjs";
 
-// @Module({
-//   imports: [],
-//   controllers: [],
-//   providers: [ShopService, ProductService],
-//   exports: [ShopService, ProductService],
-// })
-// export class ShopifyModule extends ConfigurableModuleClass {}
+@Module({
+  imports: [MikroOrmModule],
+  controllers: [],
+  providers: [ShopService, ProductService],
+  exports: [ShopService, ProductService],
+})
+export class ShopifyModule extends ConfigurableModuleClass {}
 
-export interface ShopifyModuleAsyncOptions
-  extends Pick<ModuleMetadata, "imports" | "providers"> {
-  inject?: any[];
-}
+// export interface ShopifyModuleAsyncOptions
+//   extends Pick<ModuleMetadata, "imports" | "providers"> {
+//   inject?: any[];
+// }
 
-@Global()
-@Module({})
-export class ShopifyModule {
-  constructor(private readonly options: ShopifyModuleAsyncOptions) {}
+// @Global()
+// @Module({})
+// export class ShopifyModule {
+//   constructor(private readonly options: ShopifyModuleAsyncOptions) {}
 
-  static async forRootAsync(
-    options: ShopifyModuleAsyncOptions
-  ): Promise<DynamicModule> {
-    return {
-      module: ShopifyModule,
-      imports: options.imports || [],
-      providers: [ShopService, ProductService],
-      exports: [ShopService, ProductService],
-    };
-  }
-}
+//   static async forRootAsync(
+//     options: ShopifyModuleAsyncOptions
+//   ): Promise<DynamicModule> {
+//     console.log(options);
+//     return {
+//       module: ShopifyModule,
+//       imports: options.imports || [],
+//       providers: [ShopService, ProductService],
+//       exports: [ShopService, ProductService],
+//     };
+//   }
+// }
