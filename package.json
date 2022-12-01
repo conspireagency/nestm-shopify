@@ -1,6 +1,6 @@
 {
   "name": "@conspireagency/nestm-shopify",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/index.js",
   "publishConfig": {
@@ -18,9 +18,11 @@
   "license": "ISC",
   "dependencies": {
     "@mikro-orm/core": "^5.5.3",
+    "@mikro-orm/postgresql": "^5.5.3",
     "@nestjs/common": "^9.2.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.5.7"
+    "rxjs": "^7.5.7",
+    "shopify-api-node": "^3.11.3"
   },
   "devDependencies": {
     "@types/node": "^18.11.10",

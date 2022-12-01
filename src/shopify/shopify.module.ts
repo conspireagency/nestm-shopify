@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
-import { ShopifyService } from './shopify.service';
-import { ShopifyController } from './shopify.controller';
+import { Module } from "@nestjs/common";
+import { ProductService } from "./product.service";
+import { ShopService } from "./shop.service";
 
 @Module({
-  controllers: [ShopifyController],
-  providers: [ShopifyService]
+  controllers: [],
+  providers: [ShopService, ProductService],
+  exports: [ShopService, ProductService],
 })
 export class ShopifyModule {}
