@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/conspireagency"
+    "@conspireagency/registry": "https://npm.pkg.github.com"
   },
   "files": [
     "dist"
