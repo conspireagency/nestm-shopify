@@ -25,15 +25,10 @@ export interface ShopifyModuleAsyncOptions
   inject?: any[];
 }
 
-export const SHOPIFY_MODULE_OPTIONS = Symbol("shopify-module-options");
-
 @Global()
 @Module({})
 export class ShopifyModule {
-  constructor(
-    @Inject(SHOPIFY_MODULE_OPTIONS)
-    private readonly options: ShopifyModuleAsyncOptions
-  ) {}
+  constructor(private readonly options: ShopifyModuleAsyncOptions) {}
 
   static async forRootAsync(
     options: ShopifyModuleAsyncOptions
