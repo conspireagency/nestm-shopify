@@ -13,7 +13,7 @@ import { ConfigurableModuleClass } from "./shopify.module-definition";
 import { MikroOrmModule } from "@mikro-orm/nestjs";
 
 @Module({
-  imports: [MikroOrmModule],
+  imports: [MikroOrmModule.forRoot()],
   controllers: [],
   providers: [ShopService, ProductService],
   exports: [ShopService, ProductService],
