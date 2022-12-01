@@ -19,6 +19,7 @@ jobs:
           node-version: 17
           registry-url: "https://npm.pkg.github.com"
           scope: "@conspireagency"
+          always-auth: true
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
