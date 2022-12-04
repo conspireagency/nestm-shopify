@@ -22,6 +22,9 @@ export class ProductService {
     const products_to_save = await this.getProductsToSave(shop, products);
     const variants_to_save = await this.getVariantsFromProducts(products);
 
+    console.log(
+      `Saving ${products_to_save.length} products and ${variants_to_save.length} variants`
+    );
     await this.saveProductsAndVariants(products_to_save, variants_to_save);
   }
 
@@ -60,14 +63,12 @@ export class ProductService {
     let variants_to_save = [];
     products.forEach((product) => {
       product.variants.forEach((variant) => {
-        if (variant.sku) {
-          variant.id = variant.id.toString();
-          const new_variant = new Variant(
-            this.em.getReference(Product, product.id),
-            variant
-          );
-          variants_to_save.push(new_variant);
-        }
+        variant.id = variant.id.toString();
+        const new_variant = new Variant(
+          this.em.getReference(Product, product.id),
+          variant
+        );
+        variants_to_save.push(new_variant);
       });
     });
 
