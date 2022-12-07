@@ -5,7 +5,6 @@ import { EntityManager } from "@mikro-orm/postgresql";
 import { Shopify } from "@shopify/shopify-api";
 
 import topLevelAuthRedirect from "./top-level-auth-redirect";
-import { ConfigService } from "@nestjs/config";
 import { AuthModuleOptions, MODULE_OPTIONS_TOKEN } from "./auth.module";
 
 @Injectable()
