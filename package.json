@@ -21,6 +21,9 @@
     "@mikro-orm/nestjs": "^5.1.2",
     "@mikro-orm/postgresql": "^5.5.3",
     "@nestjs/common": "^9.2.1",
+    "@nestjs/config": "^2.2.0",
+    "@shopify/shopify-api": "^5.3.0",
+    "express": "^4.18.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.7",
     "shopify-api-node": "^3.11.3"
