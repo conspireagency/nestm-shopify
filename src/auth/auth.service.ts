@@ -11,10 +11,10 @@ import { AuthModuleOptions, MODULE_OPTIONS_TOKEN } from "./auth.module";
 @Injectable()
 export class AuthService {
   constructor(
-    @Inject(MODULE_OPTIONS_TOKEN) private options: AuthModuleOptions
-  ) // private readonly orm: MikroORM,
-  // private readonly em: EntityManager
-  {}
+    //@Inject(MODULE_OPTIONS_TOKEN) private options: AuthModuleOptions,
+    private readonly orm: MikroORM,
+    private readonly em: EntityManager
+  ) {}
 
   // async auth(req, res) {
   //   const needsTop = req.signedCookies[
