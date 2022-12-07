@@ -9,7 +9,7 @@ import { ConfigService } from "@nestjs/config";
 import { AuthMiddleware } from "./middleware/auth.middleware";
 
 export interface AuthModuleOptions {
-  //configService: ConfigService;
+  configService: ConfigService;
 }
 
 export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } =
