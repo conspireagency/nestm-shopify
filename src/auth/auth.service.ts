@@ -11,76 +11,75 @@ import { AuthModuleOptions, MODULE_OPTIONS_TOKEN } from "./auth.module";
 @Injectable()
 export class AuthService {
   constructor(
-    @Inject(MODULE_OPTIONS_TOKEN) private options: AuthModuleOptions,
-    private readonly orm: MikroORM,
-    private readonly em: EntityManager,
-    private readonly configService: ConfigService
-  ) {}
+    @Inject(MODULE_OPTIONS_TOKEN) private options: AuthModuleOptions
+  ) // private readonly orm: MikroORM,
+  // private readonly em: EntityManager
+  {}
 
-  async auth(req, res) {
-    const needsTop = req.signedCookies[
-      `${this.options.configService.get("TOP_LEVEL_OAUTH_COOKIE")}`
-    ]
-      ? false
-      : true;
-    if (needsTop) {
-      console.log("no cookie, redirecting to toplevel");
-      return res.redirect(
-        `/api/auth/toplevel?${new URLSearchParams(req.query).toString()}`
-      );
-    }
-    console.log("cookie found, beginAuth redirect");
-    const redirectUrl = await Shopify.Auth.beginAuth(
-      req,
-      res,
-      req.query.shop,
-      "/api/auth/callback",
-      false
-    );
+  // async auth(req, res) {
+  //   const needsTop = req.signedCookies[
+  //     `${this.options.configService.get("TOP_LEVEL_OAUTH_COOKIE")}`
+  //   ]
+  //     ? false
+  //     : true;
+  //   if (needsTop) {
+  //     console.log("no cookie, redirecting to toplevel");
+  //     return res.redirect(
+  //       `/api/auth/toplevel?${new URLSearchParams(req.query).toString()}`
+  //     );
+  //   }
+  //   console.log("cookie found, beginAuth redirect");
+  //   const redirectUrl = await Shopify.Auth.beginAuth(
+  //     req,
+  //     res,
+  //     req.query.shop,
+  //     "/api/auth/callback",
+  //     false
+  //   );
 
-    console.log(redirectUrl);
+  //   console.log(redirectUrl);
 
-    return res.redirect(redirectUrl);
-  }
+  //   return res.redirect(redirectUrl);
+  // }
 
-  async topLevelAuth(req, res) {
-    console.log("seting cookie in top level");
-    res.cookie(this.options.configService.get("TOP_LEVEL_OAUTH_COOKIE"), "1", {
-      signed: true,
-      httpOnly: true,
-      sameSite: "strict",
-    });
+  // async topLevelAuth(req, res) {
+  //   console.log("seting cookie in top level");
+  //   res.cookie(this.options.configService.get("TOP_LEVEL_OAUTH_COOKIE"), "1", {
+  //     signed: true,
+  //     httpOnly: true,
+  //     sameSite: "strict",
+  //   });
 
-    res.set("Content-Type", "text/html");
+  //   res.set("Content-Type", "text/html");
 
-    console.log("redirecting to top level helper then back to auth");
-    return res.send(
-      topLevelAuthRedirect({
-        apiKey: Shopify.Context.API_KEY,
-        hostName: Shopify.Context.HOST_NAME,
-        host: req.query.host,
-        query: req.query,
-      })
-    );
-  }
+  //   console.log("redirecting to top level helper then back to auth");
+  //   return res.send(
+  //     topLevelAuthRedirect({
+  //       apiKey: Shopify.Context.API_KEY,
+  //       hostName: Shopify.Context.HOST_NAME,
+  //       host: req.query.host,
+  //       query: req.query,
+  //     })
+  //   );
+  // }
 
-  async getAuthCallback(req, res) {
-    try {
-      console.log("authcallback verify session, this calls store session");
-      const session = await Shopify.Auth.validateAuthCallback(
-        req,
-        res,
-        req.query
-      );
-      const host = req.query.host;
-      // Redirect to app with shop parameter upon auth
-      res.redirect(`/?shop=${session.shop}&host=${host}`);
-      // return res.redirect(
-      //   `https://${session.shop}/admin/apps/cherrystone-acqua-conspire`,
-      // );
-    } catch (e) {
-      console.log("ERROR IN CALLBACK", e);
-      return res.status(500).send();
-    }
-  }
+  // async getAuthCallback(req, res) {
+  //   try {
+  //     console.log("authcallback verify session, this calls store session");
+  //     const session = await Shopify.Auth.validateAuthCallback(
+  //       req,
+  //       res,
+  //       req.query
+  //     );
+  //     const host = req.query.host;
+  //     // Redirect to app with shop parameter upon auth
+  //     res.redirect(`/?shop=${session.shop}&host=${host}`);
+  //     // return res.redirect(
+  //     //   `https://${session.shop}/admin/apps/cherrystone-acqua-conspire`,
+  //     // );
+  //   } catch (e) {
+  //     console.log("ERROR IN CALLBACK", e);
+  //     return res.status(500).send();
+  //   }
+  // }
 }
