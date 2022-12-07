@@ -6,6 +6,7 @@ import {
 import { AuthService } from "./auth.service";
 import { AuthController } from "./auth.controller";
 import { ConfigService } from "@nestjs/config";
+import { AuthMiddleware } from "./middleware/auth.middleware";
 
 export interface AuthModuleOptions {
   configService: ConfigService;
@@ -16,6 +17,7 @@ export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } =
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, AuthMiddleware],
+  exports: [AuthService, AuthMiddleware],
 })
 export class AuthModule extends ConfigurableModuleClass {}

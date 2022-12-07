@@ -8,10 +8,12 @@ import {
   Page,
   Metafield,
 } from "./shopify/entities";
-import { AuthModule } from "auth/auth.module";
+import { AuthModule } from "./auth/auth.module";
+import { AuthMiddleware } from "./auth/middleware/auth.middleware";
 
 export {
   AuthModule,
+  AuthMiddleware,
   ShopifyModule,
   ProductService,
   Shop,
