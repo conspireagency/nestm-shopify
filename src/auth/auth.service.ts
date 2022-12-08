@@ -4,11 +4,10 @@ import { EntityManager } from "@mikro-orm/postgresql";
 
 import { Shopify } from "@shopify/shopify-api";
 
+import { MODULE_OPTIONS_TOKEN } from "./config.module-definition";
+import { AuthModuleOptions } from "./interfaces/config-module-options.interface";
+
 import topLevelAuthRedirect from "./top-level-auth-redirect";
-import {
-  AuthModuleOptions,
-  MODULE_OPTIONS_TOKEN,
-} from "./AuthConfigurableModuleClass";
 
 @Injectable()
 export class AuthService {

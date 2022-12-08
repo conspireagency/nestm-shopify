@@ -3,7 +3,7 @@ import { AuthService } from "./auth.service";
 import { AuthController } from "./auth.controller";
 import { AuthMiddleware } from "./middleware/auth.middleware";
 
-import { ConfigurableModuleClass } from "./AuthConfigurableModuleClass";
+import { ConfigurableModuleClass } from "./config.module-definition";
 
 @Module({
   providers: [AuthService, AuthMiddleware],

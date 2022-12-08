@@ -5,10 +5,8 @@ import { EntityManager } from "@mikro-orm/postgresql";
 import { ApiVersion, Shopify } from "@shopify/shopify-api";
 
 import { Shop } from "../../shopify/entities/Shop.entity";
-import {
-  AuthModuleOptions,
-  MODULE_OPTIONS_TOKEN,
-} from "../AuthConfigurableModuleClass";
+import { AuthModuleOptions } from "../interfaces/config-module-options.interface";
+import { MODULE_OPTIONS_TOKEN } from "../config.module-definition";
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
