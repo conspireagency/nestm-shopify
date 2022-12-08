@@ -9,7 +9,7 @@ import {
   Metafield,
 } from "./shopify/entities";
 import { AuthModule } from "./auth/auth.module";
-import { AuthMiddleware } from "./auth/middleware/auth.middleware";
+import { AuthMiddleware } from "./client/middleware/auth.middleware";
 import { ClientModule } from "./client/client.module";
 
 export {

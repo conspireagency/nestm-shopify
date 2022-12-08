@@ -5,13 +5,12 @@ import { EntityManager } from "@mikro-orm/postgresql";
 import { ApiVersion, Shopify } from "@shopify/shopify-api";
 
 import { Shop } from "../../shopify/entities/Shop.entity";
-import { AuthModuleOptions } from "../interfaces/config-module-options.interface";
-import { MODULE_OPTIONS_TOKEN } from "../config.module-definition";
+// import { AuthModuleOptions } from "../interfaces/config-module-options.interface";
+// import { MODULE_OPTIONS_TOKEN } from "../config.module-definition";
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
   constructor(
-    @Inject(MODULE_OPTIONS_TOKEN) private options: AuthModuleOptions,
     private readonly orm: MikroORM,
     private readonly em: EntityManager
   ) {}
@@ -24,7 +23,7 @@ export class AuthMiddleware implements NestMiddleware {
     console.log(query_hmac_stripped);
 
     let gen_hmac = crypto
-      .createHmac("sha256", this.options.secret)
+      .createHmac("sha256", process.env.SHOPIFY_SECRET)
       .update(query_hmac_stripped)
       .digest("hex");
 
@@ -59,11 +58,11 @@ export class AuthMiddleware implements NestMiddleware {
     // TODO Your app uses online tokens and the token for that shop has expired.
 
     // check your app has a token for that shop, but your app now requires scopes that differ from the scopes granted with that token.
-    if (shop_to_check.scope !== this.options.scopes) {
+    if (shop_to_check.scope !== process.env.SCOPES) {
       console.log(
         "scopes dont match need auth",
         shop_to_check.scope,
-        this.options.scopes
+        process.env.SCOPES
       );
       return true;
     }

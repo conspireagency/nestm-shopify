@@ -1,13 +1,13 @@
 import { Module } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { AuthController } from "./auth.controller";
-import { AuthMiddleware } from "./middleware/auth.middleware";
+import { AuthMiddleware } from "../client/middleware/auth.middleware";
 
 import { ConfigurableModuleClass } from "./config.module-definition";
 
 @Module({
-  providers: [AuthService, AuthMiddleware],
+  providers: [AuthService],
   controllers: [AuthController],
-  exports: [AuthService, AuthMiddleware],
+  exports: [AuthService],
 })
 export class AuthModule extends ConfigurableModuleClass {}
