@@ -10,10 +10,12 @@ import {
 } from "./shopify/entities";
 import { AuthModule } from "./auth/auth.module";
 import { AuthMiddleware } from "./auth/middleware/auth.middleware";
+import { ClientModule } from "./client/client.module";
 
 export {
   AuthModule,
   AuthMiddleware,
+  ClientModule,
   ShopifyModule,
   ProductService,
   Shop,
