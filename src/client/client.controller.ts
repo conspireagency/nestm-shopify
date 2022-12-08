@@ -1,16 +1,9 @@
-import { Controller, Get, Inject, Req, Res } from "@nestjs/common";
-import { join } from "path";
+import { Controller, Get, Req, Res } from "@nestjs/common";
 import * as httpProxy from "http-proxy";
-import {
-  AuthModuleOptions,
-  MODULE_OPTIONS_TOKEN,
-} from "../auth/AuthConfigurableModuleClass";
 
 @Controller("")
 export class ClientController {
-  constructor(
-    @Inject(MODULE_OPTIONS_TOKEN) private options: AuthModuleOptions
-  ) {}
+  constructor() {}
 
   proxy = httpProxy.createProxyServer();
   @Get("*")
