@@ -2,12 +2,13 @@ import { Inject, Injectable } from "@nestjs/common";
 import { MikroORM } from "@mikro-orm/core";
 import { EntityManager } from "@mikro-orm/postgresql";
 
-import { Shopify } from "@shopify/shopify-api";
+import { ApiVersion, Shopify } from "@shopify/shopify-api";
 
 import { MODULE_OPTIONS_TOKEN } from "./config.module-definition";
 import { AuthModuleOptions } from "./interfaces/config-module-options.interface";
 
 import topLevelAuthRedirect from "./top-level-auth-redirect";
+import { Shop } from "../shopify/entities";
 
 @Injectable()
 export class AuthService {
@@ -15,7 +16,80 @@ export class AuthService {
     @Inject(MODULE_OPTIONS_TOKEN) private options: AuthModuleOptions,
     private readonly orm: MikroORM,
     private readonly em: EntityManager
-  ) {}
+  ) {
+    Shopify.Context.initialize({
+      API_KEY: this.options.api_key,
+      API_SECRET_KEY: this.options.secret,
+      SCOPES: this.options.scopes.split(","),
+      HOST_NAME: this.options.host.replace(/https?:\/\//, ""),
+      HOST_SCHEME: this.options.host.split("://")[0],
+      API_VERSION: ApiVersion.October22,
+      IS_EMBEDDED_APP: true,
+      SESSION_STORAGE: new Shopify.Session.CustomSessionStorage(
+        this.storeCallback.bind(this),
+        this.loadCallback.bind(this),
+        this.deleteCallback.bind(this)
+      ),
+    });
+  }
+
+  async storeCallback(session) {
+    try {
+      console.log("storeCallback in middleware");
+
+      const shop = new Shop(
+        session.id,
+        session.shop,
+        session.state,
+        session.isOnline,
+        session.scope,
+        session.accessToken
+      );
+
+      await this.em.upsert(Shop, shop);
+
+      return true;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  async loadCallback(id) {
+    try {
+      // Inside our try, we use `getAsync` to access the method by id
+      // If we receive data back, we parse and return it
+      // If not, we return `undefined`
+      console.log("loadCallback in middleware");
+      const result = await this.em.findOneOrFail(Shop, { id: id });
+
+      if (result) {
+        return {
+          id: result.id,
+          shop: result.shop,
+          state: result.state,
+          isOnline: result.isonline,
+          scope: result.scope,
+          accessToken: result.accesstoken,
+        };
+      } else {
+        return undefined;
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  async deleteCallback(id) {
+    try {
+      console.log("delete callback");
+      // Inside our try, we use the `delAsync` method to delete our session.
+      // This method returns a boolean (true if successful, false if not)
+      const response = await this.em.nativeDelete(Shop, { id: id });
+      return true;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 
   async auth(req, res) {
     const needsTop = req.signedCookies[`${this.options.cookie}`] ? false : true;
