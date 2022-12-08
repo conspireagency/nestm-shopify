@@ -12,3 +12,7 @@ Auth module, takes care of installation related tasks. Currently supports offlin
 TOP_LEVEL_OAUTH_COOKIE
 SHOPIFY_SECRET
 SCOPES
+
+APP SETUP SHOULD LOOK LIKE
+https://4167-136-26-51-75.ngrok.io/
+https://4167-136-26-51-75.ngrok.io/api/auth/callback
