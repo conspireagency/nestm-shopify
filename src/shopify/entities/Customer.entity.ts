@@ -4,6 +4,7 @@ import {
   Property,
   ManyToOne,
   OneToMany,
+  Collection,
 } from "@mikro-orm/core";
 import { Metafield } from "./Metafield.entity";
 
@@ -18,8 +19,8 @@ export class Customer {
   @Property({ nullable: true })
   accepts_marketing_updated_at: Date;
 
-  @OneToMany(() => Address, (address) => address.customer_id)
-  addresses: Address[];
+  @OneToMany("Address", "customer_id")
+  addresses = new Collection<Address>(this);
 
   @Property({ nullable: true })
   currency: string;
