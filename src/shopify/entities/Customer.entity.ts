@@ -28,8 +28,8 @@ export class Customer {
   @Property({ nullable: true })
   created_at: Date;
 
-  @ManyToOne()
-  default_address: Address;
+  // @ManyToOne()
+  // default_address: Address;
 
   @Property()
   email: string;
