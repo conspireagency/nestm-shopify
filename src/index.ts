@@ -12,7 +12,7 @@ import {
 import { AuthModule } from "./auth/auth.module";
 import { AuthMiddleware } from "./client/middleware/auth.middleware";
 import { ClientModule } from "./client/client.module";
-import { ShopifyGuard } from "core/guards/shopify.guard";
+import { ShopifyGuard } from "./core/guards/shopify.guard";
 
 export {
   AuthModule,

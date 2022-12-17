@@ -1,6 +1,6 @@
 {
   "name": "@conspireagency/nestm-shopify",
-  "version": "1.0.75",
+  "version": "1.0.76",
   "description": "",
   "main": "dist/index.js",
   "publishConfig": {
