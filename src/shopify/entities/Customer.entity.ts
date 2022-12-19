@@ -83,7 +83,7 @@ export class Customer {
   @Property({ nullable: true })
   multipass_identifier: string;
 
-  @Property({ nullable: true })
+  @Property({ nullable: true, length: 5000 })
   note: string;
 
   @Property({ nullable: true })
