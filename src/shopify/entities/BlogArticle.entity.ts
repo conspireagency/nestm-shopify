@@ -29,8 +29,8 @@ export class BlogArticle {
   @Property({ nullable: true })
   handle: string;
 
-  @OneToOne()
-  image: Rel<BlogImage>;
+  @OneToOne({ nullable: true })
+  image?: Rel<BlogImage>;
 
   @Property()
   published: boolean;

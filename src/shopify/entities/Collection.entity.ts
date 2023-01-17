@@ -1,4 +1,4 @@
-import { Entity, OneToOne, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, OneToOne, PrimaryKey, Property, Rel } from "@mikro-orm/core";
 import { Numeric } from "../entity-types/Numeric";
 
 // note this is for a manual collection as
@@ -16,7 +16,7 @@ export class Collection {
   handle: string;
 
   @OneToOne({ nullable: true })
-  image: CollectionImage;
+  image?: CollectionImage;
 
   @Property()
   published_at: Date;
@@ -40,7 +40,7 @@ export class Collection {
 @Entity()
 export class CollectionImage {
   @OneToOne()
-  collection: Collection;
+  collection: Rel<Collection>;
 
   @Property()
   src: string;
