@@ -5,38 +5,14 @@ import {
   ManyToOne,
   OneToMany,
   Collection,
-  Type,
-  Platform,
+  OneToOne,
 } from "@mikro-orm/core";
-import { PostgreSqlPlatform } from "@mikro-orm/postgresql";
-import { Metafield } from "./Metafield.entity";
-
-export class Numeric extends Type<number, string> {
-  public convertToDatabaseValue(value: number, platform: Platform): string {
-    this.validatePlatformSupport(platform);
-    return value.toString();
-  }
-
-  public convertToJSValue(value: string, platform: Platform): number {
-    this.validatePlatformSupport(platform);
-    return Number(value);
-  }
-
-  public getColumnType(): string {
-    return "numeric(14,2)";
-  }
-
-  private validatePlatformSupport(platform: Platform): void {
-    if (!(platform instanceof PostgreSqlPlatform)) {
-      throw new Error("Numeric custom type implemented only for PG.");
-    }
-  }
-}
+import { Numeric } from "../entity-types/Numeric";
 
 @Entity()
 export class Customer {
-  @PrimaryKey()
-  id: string;
+  @PrimaryKey({ type: Numeric })
+  id: Numeric;
 
   @Property({ nullable: true })
   accepts_marketing: boolean;
@@ -53,8 +29,8 @@ export class Customer {
   @Property({ nullable: true })
   created_at: Date;
 
-  // @ManyToOne()
-  // default_address: Address;
+  @OneToOne()
+  default_address: Address;
 
   @Property()
   email: string;
@@ -68,8 +44,8 @@ export class Customer {
   @Property({ nullable: true })
   last_name: string;
 
-  @Property({ nullable: true })
-  last_order_id: string;
+  @Property({ nullable: true, type: Numeric })
+  last_order_id: Numeric;
 
   @Property({ nullable: true })
   last_order_name: string;
@@ -125,8 +101,8 @@ export class Customer {
 
 @Entity()
 export class Address {
-  @PrimaryKey()
-  id: string;
+  @PrimaryKey({ type: Numeric })
+  id: Numeric;
 
   @ManyToOne()
   customer_id!: Customer;
