@@ -4,12 +4,12 @@ import { PostgreSqlPlatform } from "@mikro-orm/postgresql";
 export class Numeric extends Type<number, string> {
   public convertToDatabaseValue(value: number, platform: Platform): string {
     this.validatePlatformSupport(platform);
-    return value.toString();
+    return value === null ? null : value.toString();
   }
 
   public convertToJSValue(value: string, platform: Platform): number {
     this.validatePlatformSupport(platform);
-    return Number(value);
+    return value === null ? null : Number(value);
   }
 
   public getColumnType(): string {

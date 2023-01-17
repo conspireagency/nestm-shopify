@@ -46,10 +46,10 @@ export class Customer {
   last_name: string;
 
   @Property({ nullable: true, type: Numeric })
-  last_order_id: Numeric;
+  last_order_id?: Numeric;
 
   @Property({ nullable: true })
-  last_order_name: string;
+  last_order_name?: string;
 
   // @Property()
   // metafield: Metafield;
