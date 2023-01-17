@@ -105,7 +105,7 @@ export class Address {
   @PrimaryKey({ type: Numeric })
   id: Numeric;
 
-  @ManyToOne()
+  @ManyToOne(() => Customer)
   customer_id!: Rel<Customer>;
 
   @Property({ nullable: true })
