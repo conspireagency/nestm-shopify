@@ -4,6 +4,7 @@ import {
   OneToOne,
   PrimaryKey,
   Property,
+  Rel,
 } from "@mikro-orm/core";
 import { Numeric } from "../entity-types/Numeric";
 import { Metafield } from "./Metafield.entity";
@@ -28,8 +29,8 @@ export class BlogArticle {
   @Property({ nullable: true })
   handle: string;
 
-  @Property()
-  image: BlogImage;
+  @OneToOne()
+  image: Rel<BlogImage>;
 
   @Property()
   published: boolean;
@@ -55,7 +56,7 @@ export class BlogArticle {
 
 export class BlogImage {
   @OneToOne()
-  blog: BlogArticle;
+  blog: Rel<BlogArticle>;
 
   @Property()
   src: string;
