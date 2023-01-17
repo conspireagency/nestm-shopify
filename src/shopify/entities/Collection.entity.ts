@@ -16,7 +16,7 @@ export class Collection {
   handle: string;
 
   @OneToOne({ nullable: true })
-  image?: CollectionImage;
+  image?: Rel<CollectionImage>;
 
   @Property()
   published_at: Date;
