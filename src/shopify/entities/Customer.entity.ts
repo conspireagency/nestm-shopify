@@ -21,7 +21,7 @@ export class Customer {
   @Property({ nullable: true })
   accepts_marketing_updated_at: Date;
 
-  @OneToMany("Address", "customer_id")
+  @OneToMany("Address", "customer_id", { nullable: true })
   addresses = new Collection<Address>(this);
 
   @Property({ nullable: true })
@@ -30,7 +30,7 @@ export class Customer {
   @Property({ nullable: true })
   created_at: Date;
 
-  @OneToOne()
+  @OneToOne(() => Address, { nullable: true })
   default_address: Rel<Address>;
 
   @Property()
