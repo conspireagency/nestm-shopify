@@ -13,7 +13,7 @@ export class Numeric extends Type<number, string> {
   }
 
   public getColumnType(): string {
-    return "numeric(16,2)";
+    return "numeric(17,2)";
   }
 
   private validatePlatformSupport(platform: Platform): void {
