@@ -6,6 +6,7 @@ import {
   OneToMany,
   Collection,
   OneToOne,
+  Rel,
 } from "@mikro-orm/core";
 import { Numeric } from "../entity-types/Numeric";
 
@@ -30,7 +31,7 @@ export class Customer {
   created_at: Date;
 
   @OneToOne()
-  default_address: Address;
+  default_address: Rel<Address>;
 
   @Property()
   email: string;
@@ -105,7 +106,7 @@ export class Address {
   id: Numeric;
 
   @ManyToOne()
-  customer_id!: Customer;
+  customer_id!: Rel<Customer>;
 
   @Property({ nullable: true })
   first_name: string;
