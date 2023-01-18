@@ -16,10 +16,10 @@ export class Customer {
   id: Numeric;
 
   @Property({ nullable: true })
-  accepts_marketing: boolean;
+  accepts_marketing?: boolean;
 
   @Property({ nullable: true })
-  accepts_marketing_updated_at: Date;
+  accepts_marketing_updated_at?: Date;
 
   @OneToMany("Address", "customer_id", { nullable: true })
   addresses = new Collection<Address>(this);
@@ -55,7 +55,7 @@ export class Customer {
   // metafield: Metafield;
 
   @Property({ nullable: true })
-  marketing_opt_in_level: string;
+  marketing_opt_in_level?: string;
 
   @Property({ nullable: true })
   multipass_identifier: string;
@@ -67,10 +67,10 @@ export class Customer {
   orders_count: number;
 
   @Property({ nullable: true })
-  password: string;
+  password?: string;
 
   @Property({ nullable: true })
-  password_confirmation: string;
+  password_confirmation?: string;
 
   @Property({ nullable: true })
   phone: string;
@@ -88,7 +88,7 @@ export class Customer {
   tax_exempt: boolean;
 
   @Property({ nullable: true })
-  tax_exemptions: string[];
+  tax_exemptions?: string[];
 
   @Property({ type: Numeric, nullable: true })
   total_spent: Numeric;
