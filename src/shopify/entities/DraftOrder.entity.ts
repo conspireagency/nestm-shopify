@@ -7,15 +7,16 @@ import {
   PrimaryKey,
   Property,
 } from "@mikro-orm/core";
-import { Numeric } from "../entity-types/Numeric";
+import { Price } from "../entity-types/Price";
+import { ShopifyID } from "../entity-types/ShopifyID";
 
 @Entity()
 export class DraftOrder {
-  @PrimaryKey({ type: Numeric })
-  id: Numeric;
+  @PrimaryKey({ type: ShopifyID })
+  id: number;
 
-  @Property({ type: Numeric, nullable: true })
-  order_id: Numeric;
+  @Property({ type: ShopifyID, nullable: true })
+  order_id: number;
 
   @Property()
   created_at: Date;
@@ -29,7 +30,7 @@ export class DraftOrder {
   @Property({ nullable: true })
   invoice_sent_at: Date;
 
-  @Property({ nullable: true })
+  @Property({ length: 1000, nullable: true })
   invoice_url: string;
 
   @Property({ nullable: true })
@@ -44,8 +45,8 @@ export class DraftOrder {
   @Property({ nullable: true })
   status: string;
 
-  @Property({ nullable: true })
-  total_price: string;
+  @Property({ type: Price, nullable: true })
+  total_price: number;
 }
 
 @Entity()
@@ -78,7 +79,7 @@ export class PaymentSchedules {
   @ManyToOne()
   payment_terms: PaymentTerms;
 
-  @Property()
+  @Property({ type: Price })
   amount: number;
 
   @Property()

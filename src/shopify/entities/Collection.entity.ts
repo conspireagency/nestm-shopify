@@ -1,13 +1,13 @@
 import { Entity, OneToOne, PrimaryKey, Property, Rel } from "@mikro-orm/core";
-import { Numeric } from "../entity-types/Numeric";
+import { ShopifyID } from "../entity-types/ShopifyID";
 
 // note this is for a manual collection as
 // custom collections are different
 // TODO need to add custom collection fields and create smart colleciton as well
 @Entity()
 export class Collection {
-  @PrimaryKey({ type: Numeric })
-  id: Numeric;
+  @PrimaryKey({ type: ShopifyID })
+  id: number;
 
   @Property({ nullable: true })
   body_html: string;

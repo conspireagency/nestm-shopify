@@ -6,19 +6,19 @@ import {
   Property,
   Rel,
 } from "@mikro-orm/core";
-import { Numeric } from "../entity-types/Numeric";
+import { ShopifyID } from "../entity-types/ShopifyID";
 import { Metafield } from "./Metafield.entity";
 
 @Entity()
 export class BlogArticle {
-  @PrimaryKey({ type: Numeric })
-  id: Numeric;
+  @PrimaryKey({ type: ShopifyID })
+  id: number;
 
   @Property({ nullable: true })
   author: string;
 
-  @Property({ type: Numeric })
-  blog_id: Numeric;
+  @Property({ type: ShopifyID })
+  blog_id: number;
 
   @Property({ nullable: true })
   body_html: string;

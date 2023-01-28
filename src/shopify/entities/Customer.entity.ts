@@ -8,12 +8,13 @@ import {
   OneToOne,
   Rel,
 } from "@mikro-orm/core";
-import { Numeric } from "../entity-types/Numeric";
+import { Price } from "../entity-types/Price";
+import { ShopifyID } from "../entity-types/ShopifyID";
 
 @Entity()
 export class Customer {
-  @PrimaryKey({ type: Numeric })
-  id: Numeric;
+  @PrimaryKey({ type: ShopifyID })
+  id: number;
 
   @Property({ nullable: true })
   accepts_marketing?: boolean;
@@ -45,8 +46,8 @@ export class Customer {
   @Property({ nullable: true })
   last_name: string;
 
-  @Property({ nullable: true, type: Numeric })
-  last_order_id?: Numeric;
+  @Property({ nullable: true, type: ShopifyID })
+  last_order_id?: number;
 
   @Property({ nullable: true })
   last_order_name?: string;
@@ -90,8 +91,8 @@ export class Customer {
   @Property({ nullable: true })
   tax_exemptions?: string[];
 
-  @Property({ type: Numeric, nullable: true })
-  total_spent: Numeric;
+  @Property({ type: Price, nullable: true })
+  total_spent: number;
 
   @Property({ nullable: true })
   updated_at: Date;
@@ -102,8 +103,8 @@ export class Customer {
 
 @Entity()
 export class Address {
-  @PrimaryKey({ type: Numeric })
-  id: Numeric;
+  @PrimaryKey({ type: ShopifyID })
+  id: number;
 
   @ManyToOne(() => Customer, { onDelete: "cascade" })
   customer_id!: Rel<Customer>;

@@ -1,8 +1,9 @@
 import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { ShopifyID } from "../entity-types/ShopifyID";
 
 @Entity()
 export class ShopDetail {
-  @PrimaryKey()
+  @PrimaryKey({ type: ShopifyID })
   id: number;
 
   @Property()

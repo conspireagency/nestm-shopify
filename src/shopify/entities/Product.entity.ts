@@ -6,14 +6,16 @@ import {
   OneToMany,
   PrimaryKey,
   Property,
-} from '@mikro-orm/core';
-import { Shop } from './Shop.entity';
+} from "@mikro-orm/core";
+import { Shop } from "./Shop.entity";
+import { ShopifyID } from "../entity-types/ShopifyID";
+import { Price } from "../entity-types/Price";
 
 @Entity()
 export class Product {
   // API RETURNS AN INTEGER, BUT IT'S
-  @PrimaryKey()
-  id: string;
+  @PrimaryKey({ type: ShopifyID })
+  id: number;
 
   @ManyToOne(() => Shop)
   shop: Shop;
@@ -54,7 +56,7 @@ export class Product {
   @Property()
   admin_graphql_api_id!: string;
 
-  @OneToMany('Variant', 'product_id')
+  @OneToMany("Variant", "product_id")
   variants = new Collection<Variant>(this);
 
   //   @Property()
@@ -89,8 +91,8 @@ export class Product {
 
 @Entity()
 export class Variant {
-  @PrimaryKey()
-  id: string;
+  @PrimaryKey({ type: ShopifyID })
+  id: number;
 
   @ManyToOne()
   product_id!: Product;
@@ -98,8 +100,8 @@ export class Variant {
   @Property()
   title!: string;
 
-  @Property()
-  price!: string;
+  @Property({ type: Price })
+  price!: number;
 
   @Property({ nullable: true })
   sku?: string;

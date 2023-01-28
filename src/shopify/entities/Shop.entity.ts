@@ -1,9 +1,10 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { ShopifyID } from "../entity-types/ShopifyID";
 
 @Entity()
 export class Shop {
-  @PrimaryKey()
-  id: string;
+  @PrimaryKey({ type: ShopifyID })
+  id: number;
 
   @Property()
   shop: string;
@@ -27,12 +28,12 @@ export class Shop {
   accesstoken: string;
 
   constructor(
-    id: string,
+    id: number,
     shop: string,
     state: string,
     isonline: boolean,
     scope: string,
-    accesstoken: string,
+    accesstoken: string
   ) {
     this.id = id;
     this.shop = shop;

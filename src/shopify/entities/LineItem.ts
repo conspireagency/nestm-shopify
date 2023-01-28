@@ -1,15 +1,17 @@
 import { Entity, Property, ManyToMany } from "@mikro-orm/core";
+import { Price } from "../entity-types/Price";
+import { ShopifyID } from "../entity-types/ShopifyID";
 import { Metafield } from "./Metafield.entity";
 
 @Entity()
 export class LineItem {
-  @Property()
+  @Property({ type: ShopifyID })
   id: number;
 
-  @Property()
+  @Property({ type: ShopifyID })
   product_id: number;
 
-  @Property()
+  @Property({ type: ShopifyID })
   variant_id: number;
 
   @Property()
@@ -18,8 +20,8 @@ export class LineItem {
   @Property()
   quantity: number;
 
-  @Property()
-  price: string;
+  @Property({ type: Price })
+  price: number;
 
   @Property()
   grams: number;
@@ -60,8 +62,8 @@ export class LineItem {
   @Property()
   fulfillable_quantity: number;
 
-  @Property()
-  total_discount: string;
+  @Property({ type: Price })
+  total_discount: number;
 
   @Property()
   fulfillment_status: string;

@@ -1,11 +1,12 @@
 import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { ShopifyID } from "../entity-types/ShopifyID";
 
 @Entity()
 export class Metafield {
   // create an entity definition based on the Shopify metafield resource found here https://shopify.dev/api/admin-rest/2022-10/resources/metafield
 
-  @PrimaryKey()
-  id: string;
+  @PrimaryKey({ type: ShopifyID })
+  id: number;
 
   @Property()
   namespace: string;

@@ -1,5 +1,5 @@
 import { Entity, OneToOne, PrimaryKey, Property } from "@mikro-orm/core";
-import { Numeric } from "../entity-types/Numeric";
+import { ShopifyID } from "../entity-types/ShopifyID";
 import { Metafield } from "./Metafield.entity";
 
 @Entity()
@@ -7,8 +7,8 @@ export class Page {
   // get fields for page from Shopify admin rest api
   // https://shopify.dev/docs/admin-api/rest/reference/online-store/page
 
-  @PrimaryKey({ type: Numeric })
-  id: Numeric;
+  @PrimaryKey({ type: ShopifyID })
+  id: number;
 
   @Property({ nullable: true })
   author: string;

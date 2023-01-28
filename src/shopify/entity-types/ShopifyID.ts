@@ -1,7 +1,7 @@
 import { Platform, Type } from "@mikro-orm/core";
 import { PostgreSqlPlatform } from "@mikro-orm/postgresql";
 
-export class Numeric extends Type<number, string> {
+export class ShopifyID extends Type<number, string> {
   public convertToDatabaseValue(value: number, platform: Platform): string {
     this.validatePlatformSupport(platform);
     return value === null ? null : value.toString();
