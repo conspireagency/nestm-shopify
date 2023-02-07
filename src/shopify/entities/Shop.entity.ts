@@ -26,20 +26,4 @@ export class Shop {
 
   @Property({ nullable: true })
   accesstoken: string;
-
-  constructor(
-    id: number,
-    shop: string,
-    state: string,
-    isonline: boolean,
-    scope: string,
-    accesstoken: string
-  ) {
-    this.id = id;
-    this.shop = shop;
-    this.state = state;
-    this.isonline = isonline;
-    this.scope = scope;
-    this.accesstoken = accesstoken;
-  }
 }
