@@ -19,7 +19,7 @@ export class ShopService {
     const Shopify = require("shopify-api-node");
     const shopify = new Shopify({
       shopName: shop.shop,
-      accessToken: shop.accesstoken,
+      accessToken: shop.access_token,
       apiVersion: "2022-10",
     });
     return { shop, shopify };

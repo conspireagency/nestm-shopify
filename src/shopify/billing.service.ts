@@ -35,7 +35,7 @@ export class BillingService {
   }
 
   async hasActivePayment(shop: Shop, { chargeName, interval }) {
-    const client = new Shopify.Clients.Graphql(shop.shop, shop.accesstoken);
+    const client = new Shopify.Clients.Graphql(shop.shop, shop.access_token);
 
     if (this.isRecurring(interval)) {
       const currentInstallations: any = await client.query({
@@ -89,7 +89,7 @@ export class BillingService {
     shop: Shop,
     { chargeName, amount, currencyCode, interval, trialDays }
   ) {
-    const client = new Shopify.Clients.Graphql(shop.shop, shop.accesstoken);
+    const client = new Shopify.Clients.Graphql(shop.shop, shop.access_token);
     const returnUrl = `https://${Shopify.Context.HOST_NAME}?shop=${
       shop.shop
     }&host=${btoa(`${shop.shop}/admin`)}`;

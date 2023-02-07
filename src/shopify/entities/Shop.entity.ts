@@ -1,10 +1,9 @@
 import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
-import { ShopifyID } from "../entity-types/ShopifyID";
 
 @Entity()
 export class Shop {
-  @PrimaryKey({ type: ShopifyID })
-  id: number;
+  @PrimaryKey()
+  id!: number;
 
   @Property()
   shop: string;
@@ -25,5 +24,8 @@ export class Shop {
   onlineaccessinfo: string;
 
   @Property({ nullable: true })
-  accesstoken: string;
+  access_token: string;
+
+  @Property({ nullable: true })
+  app: string;
 }

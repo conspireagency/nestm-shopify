@@ -51,7 +51,7 @@ export class AuthMiddleware implements NestMiddleware {
     console.log("results of needs auth db lookup", shop_to_check);
 
     // Check Your app doesn't have a token for that shop.
-    if (shop_to_check === null || shop_to_check.accesstoken === null) {
+    if (shop_to_check === null || shop_to_check.access_token === null) {
       return true;
     }
     // TODO Your app has a token for that shop, but it was created before you rotated the app's secret.
