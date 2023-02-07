@@ -9,13 +9,13 @@ import {
   Page,
   Metafield,
 } from "./shopify/entities";
-import { AuthModule } from "./auth/auth.module";
+//import { AuthModule } from "./auth/auth.module";
 import { AuthMiddleware } from "./client/middleware/auth.middleware";
 import { ClientModule } from "./client/client.module";
 import { ShopifyGuard } from "./core/guards/shopify.guard";
 
 export {
-  AuthModule,
+  //AuthModule,
   AuthMiddleware,
   ClientModule,
   ShopifyModule,
