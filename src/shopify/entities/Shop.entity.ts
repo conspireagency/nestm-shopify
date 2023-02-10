@@ -30,11 +30,11 @@ export class Shop {
   @Property({ nullable: true })
   app: string;
 
-  @OneToOne(
-    { entity: () => ShopDetail, mappedBy: "shop", orphanRemoval: true },
-    {
-      nullable: true,
-    }
-  )
+  @OneToOne({
+    entity: () => ShopDetail,
+    mappedBy: "shop",
+    orphanRemoval: true,
+    nullable: true,
+  })
   detail: ShopDetail;
 }
