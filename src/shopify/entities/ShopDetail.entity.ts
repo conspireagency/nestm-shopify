@@ -1,10 +1,14 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, OneToOne, PrimaryKey, Property } from "@mikro-orm/core";
 import { ShopifyID } from "../entity-types/ShopifyID";
+import { Shop } from "./Shop.entity";
 
 @Entity()
 export class ShopDetail {
   @PrimaryKey({ type: ShopifyID })
   id: number;
+
+  @OneToOne(() => Shop, (shop) => shop.detail)
+  shop: Shop;
 
   @Property({ nullable: true })
   address1: string;
