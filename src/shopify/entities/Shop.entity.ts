@@ -32,6 +32,7 @@ export class Shop {
 
   @OneToOne(() => ShopDetail, (shopDetail) => shopDetail.shop, {
     nullable: true,
+    mappedBy: "shop",
   })
   detail: ShopDetail;
 }
