@@ -1,4 +1,5 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, OneToOne, PrimaryKey, Property } from "@mikro-orm/core";
+import { ShopDetail } from "./ShopDetail.entity";
 
 @Entity()
 export class Shop {
@@ -28,4 +29,9 @@ export class Shop {
 
   @Property({ nullable: true })
   app: string;
+
+  @OneToOne(() => ShopDetail, (shopDetail) => shopDetail.shop, {
+    nullable: true,
+  })
+  detail: ShopDetail;
 }
