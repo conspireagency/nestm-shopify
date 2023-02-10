@@ -47,6 +47,9 @@ export class DraftOrder {
 
   @Property({ type: Price, nullable: true })
   total_price: number;
+
+  @Property({ nullable: true })
+  name: string;
 }
 
 @Entity()
