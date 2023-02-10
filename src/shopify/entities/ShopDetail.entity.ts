@@ -7,7 +7,7 @@ export class ShopDetail {
   @PrimaryKey({ type: ShopifyID })
   id: number;
 
-  @OneToOne(() => Shop, (shop) => shop.detail)
+  @OneToOne(() => Shop, (shop) => shop.detail, { inversedBy: "detail" })
   shop: Shop;
 
   @Property({ nullable: true })
